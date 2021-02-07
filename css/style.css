@@ -1,0 +1,306 @@
+/* --------------------------------- */
+/* Universal                         */
+/* --------------------------------- */
+* {
+    /* Ensures inputs/select same sizing */
+    box-sizing: border-box;
+}
+/* --------------------------------- */
+/* Flexbox                           */
+/* --------------------------------- */
+/* Flexbox Containers */
+body,
+form,
+form ul {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+body{
+    min-height: 100vh;
+}
+/* Center header and footer */
+header,
+footer {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+/* Push footer to bottom of viewport */
+.form-container{
+    flex: 1;
+}
+/* Turn unordered list into rows */
+form ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+/* Inputs to take one row each */
+form li input:not([type="checkbox"]):not([type="radio"]),
+textarea,
+select {
+    width: 100%;
+}
+input[type="checkbox"]{
+    line-height: 100%;
+    overflow: hidden;
+}
+input[type="checkbox"] + label,
+input[type="radio"] + label {
+    margin-left: 6px;
+    line-height: 100%;
+    overflow: hidden;
+}
+/* --------------------------------- */
+/* Design Styles                     */
+/* --------------------------------- */
+body {
+    font-family: 'Nunito', sans-serif;
+}
+form {
+    background: #f2f3f5;
+    border-radius: 8px;
+    padding: 0 10px 15px 10px;/* Don't extend padding on top */
+    position: relative;/* Container for legend --> span, so element is flush */
+}
+header{
+    background: #92D18B;
+    color: #ffffff;
+}
+footer p {
+    font-weight: 800;
+}
+.hr-divider-strong,
+footer {
+    margin-top: 50px;
+    margin-bottom: 35px;
+    height: 12px;
+    border-width: 6px 0 0.5px 0;
+    border-style: solid;
+    border-color: #92D18B;
+}
+.form-preamble{
+    text-align: center;
+    margin-top: 55px;
+}
+.form-container{
+    padding: 10px;
+}
+fieldset {
+    padding: 10px;
+    border: none;
+}
+legend {
+    display: block;
+    margin: 0;
+    border: 0;
+    padding: 0;
+    width: 100%;
+    background:#FF69B4	;
+    color: #ffffff;    
+}
+legend span {
+    position: absolute;
+    left: 0;/* Align flush left to relative container --> form set to position relative */
+    width: 100%;
+    background-color: #FF69B4;
+    text-align: center;
+    padding: 11px 0px;
+    display: block;
+    font-weight: 800;
+}
+.rounded-legend{
+    /* round top border of 1st legend */
+    border-top-left-radius: 8px;/* Apply rounded edge - match the border radius on the form! */
+    border-top-right-radius: 8px; /* Apply rounded edge - match the border radius on the form! */
+}
+.legend-space {
+    margin-top: 55px;
+}
+.user-info li {
+    margin-bottom: 15px;
+}
+/* Add space between title label and checkbox/radio group */
+.newsletter li:first-child {
+    margin-bottom: 10px;
+}
+/* Add space between checkbox/radio group labels */
+.newsletter li:nth-of-type(5) label,
+.newsletter li:nth-of-type(8) label{
+    display:inline-block;/* inline won't respect the margin - change to inline-block */
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+/* Spacing between inputs, exlcuding checks/radios */
+input:not([type="checkbox"]):not([type="radio"]),
+select {
+    margin-top: 10px;
+}
+label,
+option:disabled {
+    color: #515253;
+    font-weight: bold;
+}
+input,
+textarea,
+select {
+    background: #f2f3f5;
+    border: 1px solid #f2f3f5;/* have same width as focus state to stop jumping */
+    border-bottom: 1px solid #515253;/* have same width as focus state to stop jumping */
+    color: #515253;
+}
+select{
+    /* Reset select arrow style, so validation img doesn't cover the default arrow */
+    /* Reset so there is no jumping from outset */
+    appearance: none;
+    padding: 1px 2px;
+    background: url(../images/arrow2.svg);
+    background-size: 16px;
+    background-repeat: no-repeat;
+    background-position: right bottom 4px;/* right/left offset top/bottom offset */
+}
+input::placeholder,
+.postcode-format-container,
+.postcode-format-container label {
+    text-align: right;
+    opacity: .85;
+    font-weight: 100;
+}
+button {
+    margin-top: 10px;/* create space between button and last element */
+    padding: 10px;
+    border-radius: 5px;    
+    border-width: 1px 1px 2px 1px;
+    border-style: solid;
+    border-color: #92d18b;
+    background: #92d18b;
+    color: #ffffff;
+    font-weight: 800;
+}
+/* --------------------------------- */
+/* Psuedo Styles                     */
+/* --------------------------------- */
+input:focus:not([type="checkbox"]):not([type="radio"]),/* Do not include checkbox and radio - remove jumpy behaviour */
+textarea:focus,
+select:focus,
+select:active {
+    background:#ffffff;
+    outline: transparent;/* Fall back */
+    outline: none;/* Ideal support */
+    border: 1px dotted #FF69B4;/* have same width as base state to stop jumping */
+    border-bottom: 1px solid #FF69B4;/* have same width as base state to stop jumping */
+    transition-property: background;
+    transition-duration: 0.37s;
+    transition-timing-function: steps(4, end);
+}
+input[type="checkbox"]:focus,
+input[type="radio"]:focus{
+    outline: 1.5px dotted #FF69B4;
+}
+select:invalid {
+    /* Set placeholder color to match input placeholders */
+    color: #949595;
+}
+select:invalid option:not(:disabled) { 
+    /* re-set options color */
+    color: #000000;
+}
+button:focus, 
+button:hover{
+    /* Button tabbed */
+    outline: transparent;/* Fall back */
+    outline: none;/* Ideal support */
+    border: 1px dotted #FF69B4; 
+    border-bottom: 2px solid #FF69B4;
+    /* margin: 0.5px; */
+    /* Offset border/outlint footprint and prevent labels/inputs jumping */
+}
+button:active{
+    /* Button Clicked */
+    opacity: .75;
+}
+/* --------------------------------- */
+/* Form Validation                   */
+/* --------------------------------- */
+/* Show green tick when input present */
+select:valid,
+input:valid:not(:placeholder-shown),
+textarea:valid:not(:placeholder-shown),
+#postcode:valid:not(:placeholder-shown){
+    background: url(../images/checked.svg);
+    background-size: 16px;
+    background-repeat: no-repeat;
+    background-position: right bottom 4px;/* right/left offset top/bottom offset */
+    transition: none;/* Remove transitions so images don't flicker into place */
+}
+textarea:valid:not(:placeholder-shown){
+    background-position: right top 4px;/* right/left offset top/bottom offset */
+}  
+select {
+    background-position: right bottom 1px;/* right/left offset top/bottom offset */
+}  
+/* Show red cross when input incorrect */
+input:invalid:not(:placeholder-shown){
+    /* Just style inputs, select/textarea not applicable */
+    background: url(../images/cross.svg);
+    background-size: 16px;
+    background-repeat: no-repeat;
+    background-position: right bottom 4px;/* right/left offset top/bottom offset */
+}
+/* Checkbox / Radio - checked and unchecked styles */
+/* Unchecked style */
+input[type="checkbox"] + label,
+input[type="radio"] + label{
+    font-weight: 100;
+}
+/* Checked style */
+input:checked + label {
+    font-weight: bold;
+    font-style: normal;
+}
+/* Format the postcode help message */
+#postcode:valid ~ .postcode-format-container {
+    opacity: 0;/* Hide the format message once correct postcode entered */
+}
+/* --------------------------------- */
+/* Media Queries                     */
+/* --------------------------------- */
+@media (min-width:768px){
+    form {
+        margin: auto;/* center form */
+    }
+    .form-container {
+        display: flex;
+        flex-direction: column;
+        margin:auto;
+    }    
+    /* Make Flexbox Container  */
+    form li{
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: flex-end;/* push all items in li (label and input) to the bottom of flexcontainer */
+        width: 100%;
+    }
+    li label {
+        min-width: 135px;
+    }
+    .postcode-format-container {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+    .input-format {
+        flex-basis: 100%;
+    }
+    /* Format Postcode row */
+    .flexbox-postcode-row{
+        /* Create flex container */
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .flexbox-postcode-row input,
+    .flexbox-postcode-row div{
+    flex: 60%;/* Force to not fit on one line and therefor wrap */
+    }    
+}
