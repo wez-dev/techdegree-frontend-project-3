@@ -42,6 +42,15 @@ textarea,
 select {
     width: 100%;
 }
+#postcode{
+    /* Match postcode input to mockup image */
+    max-width: 40%;
+}
+.flexbox-postcode-row{
+    /* force short postcode input onto new row */
+    display: flex;
+    flex-direction: column;
+}
 input[type="checkbox"]{
     line-height: 100%;
     overflow: hidden;
@@ -167,6 +176,10 @@ input::placeholder,
     opacity: .85;
     font-weight: 100;
 }
+textarea {
+    height: 90px;
+    border: 1px solid #515253;
+}
 button {
     margin-top: 10px;/* create space between button and last element */
     padding: 10px;
@@ -183,6 +196,7 @@ button {
 /* --------------------------------- */
 input:focus:not([type="checkbox"]):not([type="radio"]),/* Do not include checkbox and radio - remove jumpy behaviour */
 textarea:focus,
+textarea:active,
 select:focus,
 select:active {
     background:#ffffff;
@@ -236,7 +250,15 @@ textarea:valid:not(:placeholder-shown),
 }
 textarea:valid:not(:placeholder-shown){
     background-position: right top 4px;/* right/left offset top/bottom offset */
-}  
+} 
+textarea:valid:not(:placeholder-shown):focus {
+    /* set background colour if element re-focused (edited) by user */
+    background-color: #ffffff;
+}
+select:valid:focus {
+    /* set background colour if element re-focused (edited) by user */
+    background-color: #ffffff;
+}
 select {
     background-position: right bottom 1px;/* right/left offset top/bottom offset */
 }  
@@ -276,7 +298,7 @@ input:checked + label {
         margin:auto;
     }    
     /* Make Flexbox Container  */
-    form li{
+    form li:not(.textarea):not(.flexbox-postcode-row){
         display: flex;
         flex-wrap: nowrap;
         align-items: flex-end;/* push all items in li (label and input) to the bottom of flexcontainer */
@@ -294,13 +316,16 @@ input:checked + label {
         flex-basis: 100%;
     }
     /* Format Postcode row */
-    .flexbox-postcode-row{
-        /* Create flex container */
-        display: flex;
+    .flexbox-postcode-row {
         flex-wrap: wrap;
+        flex-direction: row;
     }
     .flexbox-postcode-row input,
     .flexbox-postcode-row div{
     flex: 60%;/* Force to not fit on one line and therefor wrap */
+    }
+    .input-format.label-full-width {
+        /* align format message box by giving margin equal to minimum label width */
+        margin-left: 135px;
     }    
 }
